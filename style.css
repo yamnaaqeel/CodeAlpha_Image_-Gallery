@@ -1,0 +1,503 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: #f8f7f3;
+    color: #1d2521;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    height: 78px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 7%;
+    background: rgba(248, 247, 243, 0.92);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #e6e3da;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    display: inline-flex;
+    width: 35px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    background: #1d2521;
+    color: white;
+    border-radius: 50%;
+    margin-right: 7px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #555d58;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #1d2521;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    padding: 80px 7%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(17, 24, 20, 0.78),
+            rgba(17, 24, 20, 0.25)
+        ),
+        url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=90");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 650px;
+    color: white;
+}
+
+.small-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+    color: #b5c9b8;
+}
+
+.hero h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(50px, 7vw, 88px);
+    line-height: 1.02;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    display: block;
+    color: #d1dfcf;
+    font-style: italic;
+}
+
+.hero-text {
+    max-width: 520px;
+    line-height: 1.8;
+    color: #e7ebe6;
+    margin-bottom: 35px;
+}
+
+.explore-btn {
+    display: inline-flex;
+    gap: 20px;
+    align-items: center;
+    padding: 15px 22px;
+    background: white;
+    color: #1d2521;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.explore-btn:hover {
+    transform: translateY(-4px);
+    background: #d1dfcf;
+}
+
+
+/* ================= GALLERY ================= */
+
+.gallery-section {
+    padding: 110px 7%;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 45px;
+}
+
+.section-heading h2,
+.about h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.1;
+}
+
+.section-heading h2 span,
+.about h2 span {
+    font-style: italic;
+    color: #667d69;
+}
+
+.gallery-description {
+    max-width: 330px;
+    line-height: 1.7;
+    color: #777d78;
+}
+
+
+/* FILTERS */
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    border: 1px solid #d9d8d0;
+    background: transparent;
+    padding: 10px 19px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #1d2521;
+    color: white;
+    border-color: #1d2521;
+}
+
+
+/* ================= GRID ================= */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 260px;
+    gap: 18px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.gallery-item.large {
+    grid-column: span 2;
+}
+
+.gallery-item.tall {
+    grid-row: span 2;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+
+/* OVERLAY */
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    padding: 25px;
+
+    background: linear-gradient(
+        transparent 35%,
+        rgba(0, 0, 0, 0.8)
+    );
+
+    color: white;
+
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.gallery-item:hover .image-overlay {
+    opacity: 1;
+}
+
+.image-overlay span {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #d1dfcf;
+}
+
+.image-overlay h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 22px;
+    margin-top: 5px;
+}
+
+.view-btn {
+    width: 43px;
+    height: 43px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    color: #1d2521;
+    font-size: 19px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.view-btn:hover {
+    transform: rotate(45deg);
+}
+
+
+/* ================= ABOUT ================= */
+
+.about {
+    background: #1d2521;
+    color: white;
+    padding: 100px 7%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about h2 span {
+    color: #b5c9b8;
+}
+
+.about > p {
+    color: #c5cbc7;
+    line-height: 2;
+    max-width: 500px;
+}
+
+
+/* ================= LIGHTBOX ================= */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(10, 14, 12, 0.96);
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2000;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+.lightbox-content {
+    text-align: center;
+    color: white;
+    max-width: 85%;
+}
+
+.lightbox-content img {
+    max-width: 80vw;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.lightbox-content h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+.lightbox-content p {
+    color: #b5c9b8;
+    margin-top: 5px;
+}
+
+.close-btn,
+.prev-btn,
+.next-btn {
+    position: absolute;
+    border: none;
+    background: rgba(255,255,255,0.12);
+    color: white;
+    cursor: pointer;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    font-size: 25px;
+
+    transition: 0.3s;
+}
+
+.close-btn {
+    top: 30px;
+    right: 35px;
+}
+
+.prev-btn {
+    left: 30px;
+}
+
+.next-btn {
+    right: 30px;
+}
+
+.close-btn:hover,
+.prev-btn:hover,
+.next-btn:hover {
+    background: white;
+    color: #1d2521;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #141a17;
+    color: #89928c;
+
+    padding: 25px 7%;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 12px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-item.large {
+        grid-column: span 2;
+    }
+
+    .section-heading {
+        display: block;
+    }
+
+    .gallery-description {
+        margin-top: 20px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 580px;
+        padding: 50px 6%;
+    }
+
+    .gallery-section {
+        padding: 75px 6%;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 280px;
+    }
+
+    .gallery-item.large,
+    .gallery-item.tall {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .image-overlay {
+        opacity: 1;
+    }
+
+    .about {
+        padding: 75px 6%;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+
+    .lightbox-content img {
+        max-width: 90vw;
+        max-height: 65vh;
+    }
+}
